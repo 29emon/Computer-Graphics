@@ -1,0 +1,262 @@
+#include<stdio.h>
+#include<graphics.h>
+#define sw getmaxx()
+#define ScreenHeight getmaxy()
+#define GroundY ScreenHeight*1
+
+int ldisp=0;
+int page=0;
+void Rain(int x)
+{
+    int i,rx,ry;
+    for(i=0; i<500; i++)
+    {
+        rx=rand() % sw;
+        ry=rand() % ScreenHeight;
+        if(ry<GroundY-4)
+        {
+            if(ry<GroundY-120 || (ry>GroundY-120 && (rx<x-20 || rx>x+60)))
+                line(rx,ry,rx+0.5,ry+4);
+        }
+    }
+}
+int main()
+{
+    int gd=DETECT,gm,x=0;
+    initgraph(&gd,&gm,"");
+    initwindow(1350,790);
+    // flickering problem solution start 1
+    int page=0;
+    // flickering problem solution end 1
+    while(!kbhit())
+    {
+// flickering problem solution start 2
+        setactivepage(page);
+        setvisualpage(1-page);
+        cleardevice();
+// flickering problem solution end 2
+        //Draw Ground
+        line(0,GroundY,sw,GroundY);
+        Rain(x);
+        ldisp=(ldisp+2)%20;
+        delay(75);
+        x=(x+2)%sw;
+        setcolor(WHITE);
+        line(0,200,sw,200);
+
+        {
+//mountain_1
+            line(0,200,100,100);
+            line(200,200,100,100);
+            line(400,200,100,100);
+//mountain_2
+            line(900,200,600,60);
+            line(400,200,600,60);
+            line(500,200,600,60);
+//mountain_3
+            line(900,200,1200,60);
+            line(1350,200,1200,60);
+            line(1100,200,1200,60);
+//moon
+            setfillstyle(SOLID_FILL,WHITE);
+            circle(1310,50,20);
+            floodfill(1310,50,WHITE);
+//hat
+            setfillstyle(SOLID_FILL,WHITE);
+            ellipse(200,390,20,21,60,5);
+            fillellipse(200,390,60,5);
+            rectangle(160,330,240,390);
+//mouth
+            arc(200,460,0,0,10);
+//nose
+            ellipse(200,425,20,20,5,10);
+//eye
+            setfillstyle(SOLID_FILL,WHITE);
+            circle(220,415,6);
+            circle(180,415,6);
+//body
+            setfillstyle(SOLID_FILL,WHITE);
+            circle(200,650,100);
+            floodfill(200,650,WHITE);
+            circle(200,530,71);
+            floodfill(200,530,WHITE);
+            circle(200,440,50);
+            floodfill(200,440,WHITE);
+            fillellipse(200,750,120,11);
+//right_HAND
+            line(150,600,100,400);
+            line(200,700,100,400);
+//left_HAND
+            line(300,390,260,500);
+            line(300,390,260,530);
+        }
+        {
+
+//Doraemon
+//neck
+    setcolor(RED);
+    setfillstyle(SOLID_FILL,RED);
+            rectangle(910,480,990,500);
+            floodfill(911,481,RED);
+            //hand1
+setfillstyle(SOLID_FILL,CYAN);
+fillellipse(855,520,40,20);
+setfillstyle(SOLID_FILL,CYAN);
+            fillellipse(1045,520,40,20);
+//hand2
+setcolor(WHITE);
+setfillstyle(SOLID_FILL,WHITE);
+               circle(800,520,20);
+               floodfill(801,501,WHITE);
+               setfillstyle(SOLID_FILL,WHITE);
+            circle(1100,520,20);
+            floodfill(1101,521,WHITE);
+
+            //pocket
+            arc(950,600,200,340,60);
+            line(894,620,1005,620);
+
+            //abdomen
+            setfillstyle(SOLID_FILL,CYAN);
+            circle(950,600,100);
+            floodfill(951,601,WHITE);
+
+            setfillstyle(SOLID_FILL,WHITE);
+            circle(950,590,90);
+            floodfill(951,591,WHITE);
+            //bell
+            setcolor(YELLOW);
+            setfillstyle(SOLID_FILL,YELLOW);
+            circle(950,520,20);
+            floodfill(951,521,YELLOW);
+            setcolor(BLACK);
+            line(950,520,950,500);
+            line(970,520,930,520);
+            //leg
+setfillstyle(SOLID_FILL,WHITE);
+            fillellipse(880,700,35,20);
+            floodfill(871,701,WHITE);
+            setfillstyle(SOLID_FILL,WHITE);
+              fillellipse(1020,700,35,20);
+              floodfill(1021,701,WHITE);
+
+
+
+
+
+            //head
+
+            setcolor(CYAN);
+            setfillstyle(SOLID_FILL,CYAN);
+            circle(950,370,110);
+            floodfill(940,360,CYAN);
+            setcolor(WHITE);
+            setfillstyle(SOLID_FILL,WHITE);
+            circle(950,390,90);
+            floodfill(940,350,WHITE);
+            //eye
+            setcolor(BLACK);
+            setfillstyle(SOLID_FILL,WHITE);
+            circle(900,360,10);
+            floodfill(900,360,WHITE);
+            setfillstyle(SOLID_FILL,BLACK);
+            circle(900,360,6);
+            floodfill(900,360,BLACK);
+
+            setfillstyle(LINE_FILL,WHITE);
+            circle(1000,360,10);
+            floodfill(1000,360,WHITE);
+
+            setfillstyle(SOLID_FILL,BLACK);
+            circle(1000,360,6);
+            floodfill(1000,360,BLACK);
+
+            //mouth
+setfillstyle(LINE_FILL,WHITE);
+            arc(950,400,203,340,60);
+            floodfill(940,390,WHITE);
+            line(895,420,1005,420);
+            //nose
+              setcolor(RED);
+              setfillstyle(SOLID_FILL,RED);
+            circle(950,390,10);
+            floodfill(950,390,RED);
+            line(950,420,950,400);
+
+               //right+mouth_tail
+    setcolor(YELLOW);
+            line(1100,380,1015,400);
+            line(1100,410,1015,400);
+            line(1100,440,1015,400);
+            //Left+mouth_tail
+            line(890,400,830,380);
+            line(890,400,830,410);
+            line(890,400,830,440);
+
+
+        }
+        {
+            /////////////////////////////Tree///////////////
+            setcolor(GREEN);
+            circle(1240,270,40);
+            setfillstyle(SOLID_FILL,GREEN);
+            floodfill(1240,270,GREEN);
+            circle(1240,350,70);
+            setfillstyle(SOLID_FILL,GREEN);
+            floodfill(1240,350,GREEN);
+            circle(1240,440,100);
+            setfillstyle(SOLID_FILL,GREEN);
+            floodfill(1240,440,GREEN);
+            circle(1240,550,110);
+            setfillstyle(SOLID_FILL,GREEN);
+            floodfill(1240,550,GREEN);
+            setcolor(WHITE);
+            line(1240,700,1240,260);
+
+            line(1240,600,1170,550);
+            line(1240,600,1300,550);
+
+            line(1240,500,1170,450);
+            line(1240,500,1300,450);
+
+
+            line(1240,400,1180,350);
+            line(1240,400,1300,350);
+
+            line(1240,330,1220,270);
+            line(1240,330,1260,270);
+////tree2
+            setcolor(GREEN);
+            circle(600,280,40);
+            setfillstyle(SOLID_FILL,GREEN);
+            floodfill(600,280,GREEN);
+
+            circle(600,360,60);
+            setfillstyle(SOLID_FILL,GREEN);
+            floodfill(600,360,GREEN);
+
+            circle(600,450,80);
+            setfillstyle(SOLID_FILL,GREEN);
+            floodfill(600,450,GREEN);
+            setcolor(WHITE);
+            line(600,550,600,280);
+
+            line(580,260,600,300);
+            line(620,260,600,300);
+
+
+            line(580,340,600,400);
+            line(620,340,600,400);
+
+            line(580,420,600,500);
+            line(620,420,600,500);
+
+        }
+        delay(50);
+// flickering problem solution start 3
+        page=1-page;
+// flickering problem solution end 3
+    }
+
+    getch();
+}
